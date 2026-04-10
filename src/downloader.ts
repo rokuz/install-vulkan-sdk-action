@@ -3,6 +3,7 @@
  *  SPDX-License-Identifier: MIT
  *----------------------------------------------------------------------------*/
 
+import * as fs from 'node:fs'
 import * as path from 'node:path'
 import * as core from '@actions/core'
 import * as tc from '@actions/tool-cache' // https://github.com/actions/toolkit/tree/main/packages/tool-cache
@@ -156,7 +157,11 @@ export async function downloadVulkanSdk(version: string): Promise<string> {
   core.info(`🔽 Downloading Vulkan SDK ${version}`)
   const url = await getUrlVulkanSdk(version)
   core.info(`    URL: ${url}`)
-  const sdkPath = await tc.downloadTool(url, path.join(platform.TEMP_DIR, getVulkanSdkFilename(version)))
+  const sdkDest = path.join(platform.TEMP_DIR, getVulkanSdkFilename(version))
+  if (fs.existsSync(sdkDest)) {
+    fs.unlinkSync(sdkDest)
+  }
+  const sdkPath = await tc.downloadTool(url, sdkDest)
   core.info(`✔️ Download completed successfully!`)
   core.info(`   File: ${sdkPath}`)
 
@@ -188,7 +193,11 @@ export async function downloadVulkanRuntime(version: string): Promise<string> {
   core.info(`🔽 Downloading Vulkan Runtime ${version}`)
   const url = await getUrlVulkanRuntime(version)
   core.info(`   URL: ${url}`)
-  const runtimePath = await tc.downloadTool(url, path.join(platform.TEMP_DIR, `vulkan-runtime-components.zip`))
+  const runtimeDest = path.join(platform.TEMP_DIR, `vulkan-runtime-components.zip`)
+  if (fs.existsSync(runtimeDest)) {
+    fs.unlinkSync(runtimeDest)
+  }
+  const runtimePath = await tc.downloadTool(url, runtimeDest)
   core.info(`✔️ Download completed successfully!`)
   core.info(`    File: ${runtimePath}`)
   return runtimePath

@@ -19,6 +19,12 @@ import { registerDriverInWindowsRegistry } from './windows'
  * @param {boolean} useCache - Whether to use a cached SwiftShader library, if available.
  */
 export async function installSwiftShader(destination: string, useCache: boolean): Promise<string> {
+  // Check if SwiftShader is already installed at the destination
+  if (verifyInstallation(destination)) {
+    core.info(`✅ SwiftShader is already installed at '${destination}'. Skipping download.`)
+    return destination
+  }
+
   // Get latest version info
   const { url: downloadUrl, version } = await getLatestVersion()
 

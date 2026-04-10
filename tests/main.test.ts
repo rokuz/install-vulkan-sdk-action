@@ -134,7 +134,8 @@ describe('run', () => {
     // Mock installer
     ;(installer_vulkan.installVulkanSdk as jest.MockedFunction<typeof installer_vulkan.installVulkanSdk>).mockResolvedValue('/fake/install/path')
     ;(installer_vulkan.getVulkanSdkPath as jest.MockedFunction<typeof installer_vulkan.getVulkanSdkPath>).mockReturnValue('/fake/sdk/path')
-    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValue(true)
+    // First call: pre-install check (not yet installed), second call: post-install verification
+    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValueOnce(false).mockReturnValue(true)
 
     // Mock platform
     // Mock platform constants
@@ -243,7 +244,8 @@ describe('run', () => {
     // Mock installer
     ;(installer_vulkan.installVulkanSdk as jest.MockedFunction<typeof installer_vulkan.installVulkanSdk>).mockResolvedValue('/fake/install/path')
     ;(installer_vulkan.getVulkanSdkPath as jest.MockedFunction<typeof installer_vulkan.getVulkanSdkPath>).mockReturnValue('/fake/sdk/path')
-    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValue(true)
+    // First call: pre-install check (not yet installed), second call: post-install verification
+    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValueOnce(false).mockReturnValue(true)
 
     // Mock SwiftShader installer
     ;(installer_swiftshader.installSwiftShader as jest.MockedFunction<typeof installer_swiftshader.installSwiftShader>).mockResolvedValue('/fake/swiftshader/path')
@@ -318,7 +320,8 @@ describe('run', () => {
     // Mock installer
     ;(installer_vulkan.installVulkanSdk as jest.MockedFunction<typeof installer_vulkan.installVulkanSdk>).mockResolvedValue('/fake/install/path')
     ;(installer_vulkan.getVulkanSdkPath as jest.MockedFunction<typeof installer_vulkan.getVulkanSdkPath>).mockReturnValue('/fake/sdk/path')
-    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValue(true)
+    // First call: pre-install check (not yet installed), second call: post-install verification
+    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValueOnce(false).mockReturnValue(true)
     ;(installer_vulkan.stripdownInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.stripdownInstallationOfSdk>).mockImplementation(() => {})
 
     // Mock cache save
@@ -374,7 +377,8 @@ describe('run', () => {
     // Mock installer
     ;(installer_vulkan.installVulkanSdk as jest.MockedFunction<typeof installer_vulkan.installVulkanSdk>).mockResolvedValue('/fake/install/path')
     ;(installer_vulkan.getVulkanSdkPath as jest.MockedFunction<typeof installer_vulkan.getVulkanSdkPath>).mockReturnValue('/fake/sdk/path')
-    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValue(true)
+    // First call: pre-install check (not yet installed), second call: post-install verification
+    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValueOnce(false).mockReturnValue(true)
     ;(installer_vulkan.installVulkanRuntime as jest.MockedFunction<typeof installer_vulkan.installVulkanRuntime>).mockResolvedValue('/fake/runtime/path')
     ;(installer_vulkan.verifyInstallationOfRuntime as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfRuntime>).mockReturnValue(true)
 
@@ -427,7 +431,8 @@ describe('run', () => {
     // Mock installer
     ;(installer_vulkan.installVulkanSdk as jest.MockedFunction<typeof installer_vulkan.installVulkanSdk>).mockResolvedValue('/fake/install/path')
     ;(installer_vulkan.getVulkanSdkPath as jest.MockedFunction<typeof installer_vulkan.getVulkanSdkPath>).mockReturnValue('/fake/sdk/path')
-    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValue(true)
+    // First call: pre-install check (not yet installed), second call: post-install verification
+    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValueOnce(false).mockReturnValue(true)
 
     // Mock Lavapipe installer
     ;(installer_lavapipe.installLavapipe as jest.MockedFunction<typeof installer_lavapipe.installLavapipe>).mockResolvedValue('/fake/lavapipe/path')
@@ -525,7 +530,8 @@ describe('run', () => {
     // Mock installer
     ;(installer_vulkan.installVulkanSdk as jest.MockedFunction<typeof installer_vulkan.installVulkanSdk>).mockResolvedValue('/fake/install/path')
     ;(installer_vulkan.getVulkanSdkPath as jest.MockedFunction<typeof installer_vulkan.getVulkanSdkPath>).mockReturnValue('/fake/sdk/path')
-    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValue(true)
+    // First call: pre-install check (not yet installed), second call: post-install verification
+    ;(installer_vulkan.verifyInstallationOfSdk as jest.MockedFunction<typeof installer_vulkan.verifyInstallationOfSdk>).mockReturnValueOnce(false).mockReturnValue(true)
 
     // Mock platform
     Object.defineProperty(platform, 'IS_WINDOWS', { value: false, writable: true })

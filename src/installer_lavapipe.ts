@@ -19,6 +19,12 @@ import { registerDriverInWindowsRegistry } from './windows'
  * @param {boolean} useCache - Whether to use a cached
  */
 export async function installLavapipe(destination: string, useCache = false): Promise<string> {
+  // Check if Lavapipe is already installed at the destination
+  if (verifyInstallation(destination)) {
+    core.info(`✅ Lavapipe is already installed at '${destination}'. Skipping download.`)
+    return destination
+  }
+
   // Get latest version info
   const { url: downloadUrl, version } = await getLatestVersion()
 

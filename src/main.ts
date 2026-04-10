@@ -54,6 +54,13 @@ async function getVulkanSdk(
 ): Promise<string> {
   let installPath: string
 
+  // Check if the requested version is already installed at the destination
+  const existingInstallPath = installerVulkan.getVulkanSdkPath(destination, version)
+  if (installerVulkan.verifyInstallationOfSdk(existingInstallPath)) {
+    core.info(`✅ Vulkan SDK ${version} is already installed at '${existingInstallPath}'. Skipping download.`)
+    return destination
+  }
+
   const { cachePrimaryKey, cacheRestoreKeys } = await getCacheKeys(version)
 
   // restore from cache

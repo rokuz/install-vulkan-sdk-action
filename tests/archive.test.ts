@@ -50,6 +50,7 @@ describe('extract function', () => {
   it('calls extractTar for .tar.gz files on Linux', async () => {
     Object.defineProperty(platform, 'IS_WINDOWS', { value: false })
     Object.defineProperty(platform, 'IS_WINDOWS_ARM', { value: false })
+    Object.defineProperty(platform, 'IS_MAC', { value: false })
     Object.defineProperty(platform, 'IS_LINUX', { value: true })
     ;(tc.extractTar as jest.Mock).mockResolvedValue('/destination')
     const result = await extract('test.tar.gz', '/destination')
@@ -60,6 +61,7 @@ describe('extract function', () => {
   it('calls extractTar for .tar.gz files on Linux ARM', async () => {
     Object.defineProperty(platform, 'IS_WINDOWS', { value: false })
     Object.defineProperty(platform, 'IS_WINDOWS_ARM', { value: false })
+    Object.defineProperty(platform, 'IS_MAC', { value: false })
     Object.defineProperty(platform, 'IS_LINUX', { value: false })
     Object.defineProperty(platform, 'IS_LINUX_ARM', { value: true })
     ;(tc.extractTar as jest.Mock).mockResolvedValue('/destination')
@@ -69,6 +71,9 @@ describe('extract function', () => {
   })
 
   it('calls extractTar with flags for .tar.xz files on Linux', async () => {
+    Object.defineProperty(platform, 'IS_WINDOWS', { value: false })
+    Object.defineProperty(platform, 'IS_WINDOWS_ARM', { value: false })
+    Object.defineProperty(platform, 'IS_MAC', { value: false })
     Object.defineProperty(platform, 'IS_LINUX', { value: true })
     jest.spyOn(tc, 'extractTar').mockResolvedValue('/destination')
     const result = await extract('test.tar.xz', '/destination')
