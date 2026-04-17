@@ -31,6 +31,7 @@ class GithubTokenStore {
 
   setToken(token: string) {
     if (this.token) return
+    if (!token) return
     this.token = token
     core.setSecret(this.token)
   }
